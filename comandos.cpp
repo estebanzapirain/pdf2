@@ -1,6 +1,7 @@
 #include "comandos.h"
 
 void interpretar_comando(const String& comando) {
+  // Formato de comandos: c#### (un caracter + un parámetro numérico)
   char cmd = comando[0];
   String params = comando.substring(1);
   params.trim();
@@ -15,15 +16,14 @@ void interpretar_comando(const String& comando) {
       Serial.println("e: Ver estado de los parámetros");
       Serial.println("h####: altura de escalones (en muestras, 1-256)");
       Serial.println("w####: ancho de ventana W (en muestras, 1-256)");
-      Serial.println("m######: cantidad de muestras MAX=2^32-1");
+      Serial.println("m####: cantidad de muestras");
       break;
     case 'e':
-      Serial.printf("ALTURA DE ESCALON =  %u, ANCHO DE VENTANA =  %u \n", altura_escalon, ancho_ventana);
+      Serial.printf("ALTURA DE ESCALON =  %u, ANCHO DE VENTANA =  %u, CANTIDAD DE MUESTRAS =  %u \n", altura_escalon, ancho_ventana, n_muestras);
       break;
     case 'h':
       altura_escalon = param;
-      n_escalones = 256 / altura_escalon;
-      Serial.printf("OK! ALTURA DE ESCALON = %u, Nº ESCALONES = %u\n", altura_escalon, n_escalones);
+      Serial.printf("OK! ALTURA DE ESCALON = %u \n", altura_escalon);
       break;
     case 'w':
       ancho_ventana = param;
